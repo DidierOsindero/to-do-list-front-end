@@ -1,13 +1,13 @@
 import { IToDo } from "./MainContent";
 interface ToDoProps {
   toDoData: IToDo;
-  setToDoArr: React.Dispatch<React.SetStateAction<IToDo[]>>;
+  handleToggleToDo: (toDoID: number) => void;
 }
 
-export const ToDo = ({toDoData, setToDoArr}: ToDoProps): JSX.Element => {
+export const ToDo = ({ toDoData, handleToggleToDo }: ToDoProps): JSX.Element => {
   return (
-   
-      <div className="ToDoText" >{toDoData.text}</div>
-    
+    <div className={!toDoData.complete ? "toDo" : "strikedToDo"} id={String(toDoData.id)} onClick={e => handleToggleToDo(Number(e.currentTarget.id))}>
+      {toDoData.text}
+    </div>
   );
 };
