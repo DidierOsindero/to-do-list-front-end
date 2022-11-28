@@ -4,10 +4,10 @@ interface ToDoProps {
   setToDoArr: React.Dispatch<React.SetStateAction<IToDo[]>>;
 }
 
-export const ToDo = (toDoData: ToDoProps): JSX.Element => {
+export const ToDo = ({toDoData, setToDoArr}: ToDoProps): JSX.Element => {
   return (
-    <div className="ToDoWrapper">
-      <div>ToDo</div>
-    </div>
+   
+      <div className="ToDoText" >{toDoData.text}</div>
+    
   );
 };

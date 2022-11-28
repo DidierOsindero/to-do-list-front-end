@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { IToDo } from "./MainContent";
 import { ToDo } from "./ToDo";
 interface ToDoListViewProps {
@@ -9,13 +10,30 @@ export const ToDoListView = ({
   toDoArr,
   setToDoArr,
 }: ToDoListViewProps): JSX.Element => {
+    const [inputText, setInputText] = useState<string>('');
+
+    //HANDLERS
+    const handleAddToDo = (e:  React.FormEvent<HTMLFormElement>, toDoText: string):void => {
+        e.preventDefault();
+        setToDoArr(prev => [...prev, {text: toDoText, complete: false, id: prev.length + 1}])
+    }
+
   return (
     <div className="ToDoListViewWrapper">
       <h4>ToDoListView</h4>
-
-      {toDoArr.map((toDo) => {
-        return <ToDo toDoData={toDo} key={toDo.id} setToDoArr={setToDoArr} />;
-      })}
+      <ul>
+        {toDoArr.map((toDo) => {
+          return (
+            <div key={toDo.id}>
+              <ToDo toDoData={toDo} setToDoArr={setToDoArr} />
+            </div>
+          );
+        })}
+      </ul>
+      <form onSubmit={(e) => handleAddToDo(e, inputText)}>
+        <input value={inputText} onChange={(e)=> setInputText(e.target.value)}/>
+        <input type="submit" value="Add"/>
+      </form>
     </div>
   );
 };
