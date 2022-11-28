@@ -30,7 +30,9 @@ export const ToDoListView = ({
   const handleToggleTodo = (toDoID: number) => {
     setToDoArr(
       toDoArr.map((toDo) => {
-        return toDo.id === toDoID ? { ...toDo, complete: !toDo.complete } : toDo;
+        return toDo.id === toDoID
+          ? { ...toDo, complete: !toDo.complete }
+          : toDo;
       })
     );
   };
