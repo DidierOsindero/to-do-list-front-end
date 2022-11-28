@@ -1,6 +1,11 @@
 body {
   background-color: rgb(32, 32, 32);
   color: rgb(253, 253, 253);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+ul {
+  padding: 0px;
 }
 
 /*

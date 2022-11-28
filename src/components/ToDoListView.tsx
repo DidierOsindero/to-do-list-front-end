@@ -15,12 +15,14 @@ export const ToDoListView = ({
     //HANDLERS
     const handleAddToDo = (e:  React.FormEvent<HTMLFormElement>, toDoText: string):void => {
         e.preventDefault();
-        setToDoArr(prev => [...prev, {text: toDoText, complete: false, id: prev.length + 1}])
+        if (inputText !== "") {
+        setToDoArr(prev => [...prev, {text: toDoText, complete: false, id: prev.length + 1}]);
+        setInputText("");
+        }
     }
 
   return (
-    <div className="ToDoListViewWrapper">
-      <h4>ToDoListView</h4>
+    <div className="ToDoListViewWrapper">  
       <ul>
         {toDoArr.map((toDo) => {
           return (
@@ -30,6 +32,7 @@ export const ToDoListView = ({
           );
         })}
       </ul>
+
       <form onSubmit={(e) => handleAddToDo(e, inputText)}>
         <input value={inputText} onChange={(e)=> setInputText(e.target.value)}/>
         <input type="submit" value="Add"/>
