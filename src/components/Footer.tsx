@@ -1,7 +1,7 @@
 export const Footer = (): JSX.Element => {
   return (
     <div className="footerWrapper">
-      <h4>Footer</h4>
+      <h4>The-Best-Lists.inc</h4>
     </div>
   );
 };

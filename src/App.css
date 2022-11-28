@@ -1,10 +1,20 @@
+body {
+  background-color: rgb(32, 32, 32);
+  color: rgb(253, 253, 253);
+}
+
 /*
 HEADER===============
 */
-
+.headerWrapper {
+  text-align: center;
+}
 /*
 MAIN_CONTENT===============
 */
+.mainContentWrapper {
+  text-align: center;
+}
 
 /*
 FOOTER===============
