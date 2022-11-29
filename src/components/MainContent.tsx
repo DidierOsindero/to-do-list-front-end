@@ -8,10 +8,11 @@ export interface IToDo {
 
 export const MainContent = (): JSX.Element => {
   const [toDoArr, setToDoArr] = useState<IToDo[]>([]);
+  const [inputText, setInputText] = useState<string>("");
 
   return (
     <div className="mainContentWrapper">
-      <ToDoListView toDoArr={toDoArr} setToDoArr={setToDoArr} />
+      <ToDoListView toDoArr={toDoArr} setToDoArr={setToDoArr} inputText={inputText} setInputText={setInputText}/>
     </div>
   );
 };

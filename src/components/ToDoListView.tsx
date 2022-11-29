@@ -1,16 +1,18 @@
-import { useState } from "react";
 import { IToDo } from "./MainContent";
 import { ToDo } from "./ToDo";
 interface ToDoListViewProps {
   toDoArr: IToDo[];
   setToDoArr: React.Dispatch<React.SetStateAction<IToDo[]>>;
+  inputText: string;
+  setInputText: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const ToDoListView = ({
   toDoArr,
   setToDoArr,
+  inputText,
+  setInputText
 }: ToDoListViewProps): JSX.Element => {
-  const [inputText, setInputText] = useState<string>("");
 
   //HANDLERS
   const handleAddToDo = (
