@@ -17,9 +17,8 @@ export const ToDoListView = ({
   getToDoArr,
   postToDoArr,
   patchToDo,
-  deleteCompletedToDos
+  deleteCompletedToDos,
 }: ToDoListViewProps): JSX.Element => {
-
   //HANDLERS
   const handleAddToDo = (
     e: React.FormEvent<HTMLFormElement>,
@@ -63,8 +62,7 @@ export const ToDoListView = ({
         <input type="submit" value="Add" />
       </form>
 
-
-        <button onClick={handleDeleteCompleted}>Delete Completed</button>
+      <button onClick={handleDeleteCompleted}>Delete Completed</button>
     </div>
   );
 };

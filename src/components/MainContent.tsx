@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ToDoListView } from "./ToDoListView";
-import  axios  from "axios";
+import axios from "axios";
 
 export interface IToDo {
   text: string;
@@ -9,7 +9,10 @@ export interface IToDo {
 }
 
 //Change baseUrl depending on environment
-const baseUrl = process.env.NODE_ENV === "production" ? "BLAH BLAH BLAH" : "http://localhost:4000";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "BLAH BLAH BLAH"
+    : "http://localhost:4000";
 
 export const MainContent = (): JSX.Element => {
   const [toDoArr, setToDoArr] = useState<IToDo[]>([]);
@@ -17,53 +20,73 @@ export const MainContent = (): JSX.Element => {
 
   //GET to dos from API
   const getToDoArr = async () => {
-    console.log("getToDoArr function is running!")
+    console.log("getToDoArr function is running!");
     try {
-    const response = await axios.get(baseUrl+"/to-dos");
-    setToDoArr(response.data); 
-    } catch (error){
-      console.error("Oops... there was an issue with your GET request: ", error)
+      const response = await axios.get(baseUrl + "/to-dos");
+      setToDoArr(response.data);
+    } catch (error) {
+      console.error(
+        "Oops... there was an issue with your GET request: ",
+        error
+      );
     }
-  }
+  };
 
   //POST to dos to API
   const postToDoArr = async (toDoText: string) => {
-    console.log("postToDoArr function is running!")
+    console.log("postToDoArr function is running!");
     try {
-      axios.post(baseUrl+"/to-dos", {text: toDoText});
-    } catch (error){
-      console.error("Oops... there was an issue with your POST request: ", error)
+      axios.post(baseUrl + "/to-dos", { text: toDoText });
+    } catch (error) {
+      console.error(
+        "Oops... there was an issue with your POST request: ",
+        error
+      );
     }
-  }
+  };
 
   //PATCH a to do
   const patchToDo = async (toDoID: string, isComplete: boolean) => {
-    console.log("patchToDo function is running!")
+    console.log("patchToDo function is running!");
     try {
-      axios.patch(baseUrl+"/to-dos/"+toDoID, {complete: !isComplete});
-    } catch (error){
-      console.error("Oops... there was an issue with your PATCH request: ", error)
+      axios.patch(baseUrl + "/to-dos/" + toDoID, { complete: !isComplete });
+    } catch (error) {
+      console.error(
+        "Oops... there was an issue with your PATCH request: ",
+        error
+      );
     }
-  }
+  };
 
   //DELETE completed to dos
   const deleteCompletedToDos = async () => {
-    console.log("deleteCompletedToDos function is running!")
+    console.log("deleteCompletedToDos function is running!");
     try {
-      axios.delete(baseUrl+"/completed-to-dos/");
-    } catch (error){
-      console.error("Oops... there was an issue with your DELETE (completed to dos) request: ", error)
+      axios.delete(baseUrl + "/completed-to-dos/");
+    } catch (error) {
+      console.error(
+        "Oops... there was an issue with your DELETE (completed to dos) request: ",
+        error
+      );
     }
-  }
+  };
 
   //GET to dos stored on server DB on mount
   useEffect(() => {
     getToDoArr();
-  },[])
+  }, []);
 
   return (
     <div className="mainContentWrapper">
-      <ToDoListView toDoArr={toDoArr} patchToDo={patchToDo} inputText={inputText} setInputText={setInputText} getToDoArr={getToDoArr} postToDoArr={postToDoArr} deleteCompletedToDos={deleteCompletedToDos}/>
+      <ToDoListView
+        toDoArr={toDoArr}
+        patchToDo={patchToDo}
+        inputText={inputText}
+        setInputText={setInputText}
+        getToDoArr={getToDoArr}
+        postToDoArr={postToDoArr}
+        deleteCompletedToDos={deleteCompletedToDos}
+      />
     </div>
   );
 };

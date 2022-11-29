@@ -12,7 +12,9 @@ export const ToDo = ({
     <div
       className={!toDoData.complete ? "toDo" : "strikedToDo"}
       id={String(toDoData.id)}
-      onClick={(e) => handleToggleToDo(Number(e.currentTarget.id), toDoData.complete)}
+      onClick={(e) =>
+        handleToggleToDo(Number(e.currentTarget.id), toDoData.complete)
+      }
     >
       {toDoData.text}
     </div>
