@@ -21,12 +21,8 @@ export const ToDoListView = ({
   patchToDo,
   deleteCompletedToDos,
   dBUpdated,
-  setDbUpdated
+  setDbUpdated,
 }: ToDoListViewProps): JSX.Element => {
-
-  
-
-
   //HANDLERS
   const handleAddToDo = async (
     e: React.FormEvent<HTMLFormElement>,
@@ -41,8 +37,8 @@ export const ToDoListView = ({
   };
 
   const handleToggleTodo = (toDoID: number, isToDoComplete: boolean) => {
-   patchToDo(String(toDoID), isToDoComplete);
-   setDbUpdated(true);
+    patchToDo(String(toDoID), isToDoComplete);
+    setDbUpdated(true);
   };
 
   const handleDeleteCompleted = () => {
