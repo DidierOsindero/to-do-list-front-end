@@ -36,6 +36,16 @@ export const MainContent = (): JSX.Element => {
     }
   }
 
+  //PATCH a to do
+  const patchToDo = async (toDoID: string, isComplete: boolean) => {
+    console.log("patchToDo function is running!")
+    try {
+      axios.patch(baseUrl+"/to-dos", {complete: !isComplete});
+    } catch (error){
+      console.error("Oops... there was an issue with your PATCH request: ", error)
+    }
+  }
+
   //GET to dos stored on server DB on mount
   useEffect(() => {
     getToDoArr();
@@ -43,7 +53,7 @@ export const MainContent = (): JSX.Element => {
 
   return (
     <div className="mainContentWrapper">
-      <ToDoListView toDoArr={toDoArr} setToDoArr={setToDoArr} inputText={inputText} setInputText={setInputText} getToDoArr={getToDoArr} postToDoArr={postToDoArr}/>
+      <ToDoListView toDoArr={toDoArr} setToDoArr={setToDoArr} patchToDo={patchToDo} inputText={inputText} setInputText={setInputText} getToDoArr={getToDoArr} postToDoArr={postToDoArr}/>
     </div>
   );
 };

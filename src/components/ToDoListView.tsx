@@ -6,7 +6,8 @@ interface ToDoListViewProps {
   inputText: string;
   setInputText: React.Dispatch<React.SetStateAction<string>>;
   getToDoArr: () => Promise<void>;
-  postToDoArr: (toDoText: string) => Promise<void>
+  postToDoArr: (toDoText: string) => Promise<void>;
+  patchToDo: (toDoID: string, isComplete: boolean) => Promise<void>;
 }
 
 export const ToDoListView = ({
@@ -15,7 +16,8 @@ export const ToDoListView = ({
   inputText,
   setInputText,
   getToDoArr,
-  postToDoArr
+  postToDoArr,
+  patchToDo
 }: ToDoListViewProps): JSX.Element => {
 
   //HANDLERS
@@ -25,16 +27,11 @@ export const ToDoListView = ({
   ): void => {
     e.preventDefault();
     if (inputText !== "") {
-      // setToDoArr((prev) => [
-      //   ...prev,
-      //   { text: toDoText, complete: false, id: prev.length + 1 },
-      // ]);
       postToDoArr(inputText);
       getToDoArr();
       setInputText("");
     }
   };
-  console.log("TO DO ARRAY[0]: ", toDoArr[0])
 
   const handleToggleTodo = (toDoID: number) => {
     setToDoArr(
