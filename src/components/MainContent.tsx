@@ -11,7 +11,7 @@ export interface IToDo {
 //Change baseUrl depending on environment
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "BLAH BLAH BLAH"
+    ? "https://didiers-to-do-list-server.onrender.com"
     : "http://localhost:4000";
 
 export const MainContent = (): JSX.Element => {
