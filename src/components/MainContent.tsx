@@ -15,8 +15,18 @@ const baseUrl =
     : "http://localhost:4000";
 
 export const MainContent = (): JSX.Element => {
+  //STATES
   const [toDoArr, setToDoArr] = useState<IToDo[]>([]);
   const [inputText, setInputText] = useState<string>("");
+  const [dBUpdated, setDbUpdated] = useState<boolean>(false);
+
+  // Update toDos every time there is a change made to the database.
+  // useEffect means that this will give db enough time to make changes before fetching
+  //the newly updated to do list
+  useEffect(() => {
+    getToDoArr();
+    setDbUpdated(false);
+  }, [dBUpdated]);
 
   //GET to dos from API
   const getToDoArr = async () => {
@@ -32,7 +42,7 @@ export const MainContent = (): JSX.Element => {
     }
   };
 
-  //POST to dos to API
+  //POST to do to API
   const postToDoArr = async (toDoText: string) => {
     console.log("postToDoArr function is running!");
     try {
@@ -86,6 +96,8 @@ export const MainContent = (): JSX.Element => {
         getToDoArr={getToDoArr}
         postToDoArr={postToDoArr}
         deleteCompletedToDos={deleteCompletedToDos}
+        dBUpdated={dBUpdated}
+        setDbUpdated={setDbUpdated}
       />
     </div>
   );

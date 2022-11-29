@@ -8,6 +8,8 @@ interface ToDoListViewProps {
   postToDoArr: (toDoText: string) => Promise<void>;
   patchToDo: (toDoID: string, isComplete: boolean) => Promise<void>;
   deleteCompletedToDos: () => Promise<void>;
+  dBUpdated: boolean;
+  setDbUpdated: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const ToDoListView = ({
@@ -18,28 +20,34 @@ export const ToDoListView = ({
   postToDoArr,
   patchToDo,
   deleteCompletedToDos,
+  dBUpdated,
+  setDbUpdated
 }: ToDoListViewProps): JSX.Element => {
+
+  
+
+
   //HANDLERS
-  const handleAddToDo = (
+  const handleAddToDo = async (
     e: React.FormEvent<HTMLFormElement>,
     toDoText: string
-  ): void => {
+  ) => {
     e.preventDefault();
     if (inputText !== "") {
-      postToDoArr(toDoText);
-      getToDoArr();
+      await postToDoArr(toDoText);
+      setDbUpdated(true);
       setInputText("");
     }
   };
 
   const handleToggleTodo = (toDoID: number, isToDoComplete: boolean) => {
-    patchToDo(String(toDoID), isToDoComplete);
-    getToDoArr();
+   patchToDo(String(toDoID), isToDoComplete);
+   setDbUpdated(true);
   };
 
   const handleDeleteCompleted = () => {
     deleteCompletedToDos();
-    getToDoArr();
+    setDbUpdated(true);
   };
 
   return (
