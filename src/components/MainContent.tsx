@@ -30,10 +30,9 @@ export const MainContent = (): JSX.Element => {
   const postToDoArr = async (toDoText: string) => {
     console.log("postToDoArr function is running!")
     try {
-    const response = await axios.post(baseUrl+"/to-dos", toDoText);
-    setToDoArr(response.data); 
+      axios.post(baseUrl+"/to-dos", {text: toDoText});
     } catch (error){
-      console.error("Oops... there was an issue with your GET request: ", error)
+      console.error("Oops... there was an issue with your POST request: ", error)
     }
   }
 
@@ -44,7 +43,7 @@ export const MainContent = (): JSX.Element => {
 
   return (
     <div className="mainContentWrapper">
-      <ToDoListView toDoArr={toDoArr} setToDoArr={setToDoArr} inputText={inputText} setInputText={setInputText}/>
+      <ToDoListView toDoArr={toDoArr} setToDoArr={setToDoArr} inputText={inputText} setInputText={setInputText} getToDoArr={getToDoArr} postToDoArr={postToDoArr}/>
     </div>
   );
 };
