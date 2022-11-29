@@ -1,7 +1,7 @@
 import { IToDo } from "./MainContent";
 interface ToDoProps {
   toDoData: IToDo;
-  handleToggleToDo: (toDoID: number) => void;
+  handleToggleToDo: (toDoID: number, isToDoComplete: boolean) => void;
 }
 
 export const ToDo = ({
@@ -12,7 +12,9 @@ export const ToDo = ({
     <div
       className={!toDoData.complete ? "toDo" : "strikedToDo"}
       id={String(toDoData.id)}
-      onClick={(e) => handleToggleToDo(Number(e.currentTarget.id))}
+      onClick={(e) =>
+        handleToggleToDo(Number(e.currentTarget.id), toDoData.complete)
+      }
     >
       {toDoData.text}
     </div>

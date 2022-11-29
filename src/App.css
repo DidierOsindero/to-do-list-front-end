@@ -17,7 +17,23 @@ HEADER===============
 /*
 MAIN_CONTENT===============
 */
-.mainContentWrapper {
+.inputWrapper {
+  text-align: center;
+}
+
+.searchToolButtons {
+  text-align: center;
+}
+
+.submitButton {
+  margin-right: 10px;
+}
+
+.deleteCompletedButton {
+  margin: 10px auto;
+}
+
+.to-do-list-constainer {
   text-align: center;
 }
 

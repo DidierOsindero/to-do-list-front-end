@@ -2,46 +2,69 @@ import { IToDo } from "./MainContent";
 import { ToDo } from "./ToDo";
 interface ToDoListViewProps {
   toDoArr: IToDo[];
-  setToDoArr: React.Dispatch<React.SetStateAction<IToDo[]>>;
   inputText: string;
   setInputText: React.Dispatch<React.SetStateAction<string>>;
+  getToDoArr: () => Promise<void>;
+  postToDoArr: (toDoText: string) => Promise<void>;
+  patchToDo: (toDoID: string, isComplete: boolean) => Promise<void>;
+  deleteCompletedToDos: () => Promise<void>;
+  dBUpdated: boolean;
+  setDbUpdated: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const ToDoListView = ({
   toDoArr,
-  setToDoArr,
   inputText,
-  setInputText
+  setInputText,
+  getToDoArr,
+  postToDoArr,
+  patchToDo,
+  deleteCompletedToDos,
+  dBUpdated,
+  setDbUpdated,
 }: ToDoListViewProps): JSX.Element => {
-
   //HANDLERS
   const handleAddToDo = (
     e: React.FormEvent<HTMLFormElement>,
     toDoText: string
-  ): void => {
+  ) => {
     e.preventDefault();
     if (inputText !== "") {
-      setToDoArr((prev) => [
-        ...prev,
-        { text: toDoText, complete: false, id: prev.length + 1 },
-      ]);
+      postToDoArr(toDoText).then(() => getToDoArr());
       setInputText("");
     }
   };
 
-  const handleToggleTodo = (toDoID: number) => {
-    setToDoArr(
-      toDoArr.map((toDo) => {
-        return toDo.id === toDoID
-          ? { ...toDo, complete: !toDo.complete }
-          : toDo;
-      })
-    );
+  const handleToggleTodo = async (toDoID: number, isToDoComplete: boolean) => {
+    await patchToDo(String(toDoID), isToDoComplete);
+    getToDoArr();
+  };
+
+  const handleDeleteCompleted = () => {
+    deleteCompletedToDos().then(() => getToDoArr());
   };
 
   return (
     <div className="ToDoListViewWrapper">
-      <ul>
+      <form onSubmit={(e) => handleAddToDo(e, inputText)}>
+        <div className="inputWrapper">
+          <input
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+          />
+        </div>
+        <div className="searchToolButtons">
+          <input className="submitButton" type="submit" value="Add" />
+          <button
+            className="deleteCompletedButton"
+            onClick={handleDeleteCompleted}
+          >
+            Delete Completed
+          </button>
+        </div>
+      </form>
+
+      <ul className="to-do-list-constainer">
         {toDoArr.map((toDo) => {
           return (
             <div key={toDo.id}>
@@ -50,14 +73,6 @@ export const ToDoListView = ({
           );
         })}
       </ul>
-
-      <form onSubmit={(e) => handleAddToDo(e, inputText)}>
-        <input
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-        />
-        <input type="submit" value="Add" />
-      </form>
     </div>
   );
 };
