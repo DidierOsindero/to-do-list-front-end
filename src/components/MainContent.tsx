@@ -53,7 +53,7 @@ export const MainContent = (): JSX.Element => {
 
   return (
     <div className="mainContentWrapper">
-      <ToDoListView toDoArr={toDoArr} setToDoArr={setToDoArr} patchToDo={patchToDo} inputText={inputText} setInputText={setInputText} getToDoArr={getToDoArr} postToDoArr={postToDoArr}/>
+      <ToDoListView toDoArr={toDoArr} patchToDo={patchToDo} inputText={inputText} setInputText={setInputText} getToDoArr={getToDoArr} postToDoArr={postToDoArr}/>
     </div>
   );
 };

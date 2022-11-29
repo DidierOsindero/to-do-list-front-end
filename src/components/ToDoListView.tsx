@@ -2,7 +2,6 @@ import { IToDo } from "./MainContent";
 import { ToDo } from "./ToDo";
 interface ToDoListViewProps {
   toDoArr: IToDo[];
-  setToDoArr: React.Dispatch<React.SetStateAction<IToDo[]>>;
   inputText: string;
   setInputText: React.Dispatch<React.SetStateAction<string>>;
   getToDoArr: () => Promise<void>;
@@ -12,7 +11,6 @@ interface ToDoListViewProps {
 
 export const ToDoListView = ({
   toDoArr,
-  setToDoArr,
   inputText,
   setInputText,
   getToDoArr,
