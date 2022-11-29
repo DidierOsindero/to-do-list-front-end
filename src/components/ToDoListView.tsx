@@ -27,20 +27,15 @@ export const ToDoListView = ({
   ): void => {
     e.preventDefault();
     if (inputText !== "") {
-      postToDoArr(inputText);
+      postToDoArr(toDoText);
       getToDoArr();
       setInputText("");
     }
   };
 
-  const handleToggleTodo = (toDoID: number) => {
-    setToDoArr(
-      toDoArr.map((toDo) => {
-        return toDo.id === toDoID
-          ? { ...toDo, complete: !toDo.complete }
-          : toDo;
-      })
-    );
+  const handleToggleTodo = (toDoID: number, isToDoComplete: boolean) => {
+    patchToDo(String(toDoID), isToDoComplete);
+    getToDoArr();
   };
 
   return (

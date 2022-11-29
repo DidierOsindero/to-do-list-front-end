@@ -40,7 +40,7 @@ export const MainContent = (): JSX.Element => {
   const patchToDo = async (toDoID: string, isComplete: boolean) => {
     console.log("patchToDo function is running!")
     try {
-      axios.patch(baseUrl+"/to-dos", {complete: !isComplete});
+      axios.patch(baseUrl+"/to-dos/"+toDoID, {complete: !isComplete});
     } catch (error){
       console.error("Oops... there was an issue with your PATCH request: ", error)
     }
