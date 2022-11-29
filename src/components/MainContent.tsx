@@ -19,9 +19,8 @@ export const MainContent = (): JSX.Element => {
   const [toDoArr, setToDoArr] = useState<IToDo[]>([]);
   const [inputText, setInputText] = useState<string>("");
   const [dBUpdated, setDbUpdated] = useState<boolean>(false);
-  console.log("ARRAY:", toDoArr)
 
-  //Update toDos on mount 
+  //Update toDos on mount
   useEffect(() => {
     getToDoArr();
   }, []);
@@ -57,7 +56,9 @@ export const MainContent = (): JSX.Element => {
   const patchToDo = async (toDoID: string, isComplete: boolean) => {
     console.log("patchToDo function is running!");
     try {
-      await axios.patch(baseUrl + "/to-dos/" + toDoID, { complete: !isComplete });
+      await axios.patch(baseUrl + "/to-dos/" + toDoID, {
+        complete: !isComplete,
+      });
     } catch (error) {
       console.error(
         "Oops... there was an issue with your PATCH request: ",

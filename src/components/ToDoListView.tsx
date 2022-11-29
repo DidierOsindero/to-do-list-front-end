@@ -36,7 +36,7 @@ export const ToDoListView = ({
   };
 
   const handleToggleTodo = async (toDoID: number, isToDoComplete: boolean) => {
-    await patchToDo(String(toDoID), isToDoComplete)
+    await patchToDo(String(toDoID), isToDoComplete);
     getToDoArr();
   };
 
