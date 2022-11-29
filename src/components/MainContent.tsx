@@ -20,9 +20,9 @@ export const MainContent = (): JSX.Element => {
   const [inputText, setInputText] = useState<string>("");
   const [dBUpdated, setDbUpdated] = useState<boolean>(false);
 
-  // Update toDos every time there is a change made to the database.
-  // useEffect means that this will give db enough time to make changes before fetching
-  //the newly updated to do list
+  //Update toDos every time there is a change made to the database.
+  //useEffect means that this will give db enough time to make changes before fetching
+  // the newly updated to do list
   useEffect(() => {
     getToDoArr();
     setDbUpdated(false);
