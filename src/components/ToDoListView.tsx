@@ -48,7 +48,21 @@ export const ToDoListView = ({
 
   return (
     <div className="ToDoListViewWrapper">
-      <ul>
+
+<form onSubmit={(e) => handleAddToDo(e, inputText)}>
+<div className="inputWrapper"><input
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+        /></div>
+        <div className="searchToolButtons">
+        <input className= "submitButton" type="submit" value="Add" />
+        <button className= "deleteCompletedButton" onClick={handleDeleteCompleted}>Delete Completed</button>
+        </div>
+      </form>
+
+      
+
+      <ul className="to-do-list-constainer">
         {toDoArr.map((toDo) => {
           return (
             <div key={toDo.id}>
@@ -57,16 +71,6 @@ export const ToDoListView = ({
           );
         })}
       </ul>
-
-      <form onSubmit={(e) => handleAddToDo(e, inputText)}>
-        <input
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-        />
-        <input type="submit" value="Add" />
-      </form>
-
-      <button onClick={handleDeleteCompleted}>Delete Completed</button>
-    </div>
+      </div>
   );
 };
