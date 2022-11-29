@@ -19,13 +19,12 @@ export const MainContent = (): JSX.Element => {
   const [toDoArr, setToDoArr] = useState<IToDo[]>([]);
   const [inputText, setInputText] = useState<string>("");
   const [dBUpdated, setDbUpdated] = useState<boolean>(false);
+  console.log("ARRAY:", toDoArr)
 
-  //Update toDos on mount / every time there is a change made to the database.
-  //useEffect means that this will give db enough time to make changes before fetching
-  // the newly updated to do list
+  //Update toDos on mount 
   useEffect(() => {
     getToDoArr();
-  }, [dBUpdated]);
+  }, []);
 
   //GET to dos from API
   const getToDoArr = async () => {
@@ -45,7 +44,7 @@ export const MainContent = (): JSX.Element => {
   const postToDoArr = async (toDoText: string) => {
     console.log("postToDoArr function is running!");
     try {
-      axios.post(baseUrl + "/to-dos", { text: toDoText });
+      await axios.post(baseUrl + "/to-dos", { text: toDoText });
     } catch (error) {
       console.error(
         "Oops... there was an issue with your POST request: ",
@@ -58,7 +57,7 @@ export const MainContent = (): JSX.Element => {
   const patchToDo = async (toDoID: string, isComplete: boolean) => {
     console.log("patchToDo function is running!");
     try {
-      axios.patch(baseUrl + "/to-dos/" + toDoID, { complete: !isComplete });
+      await axios.patch(baseUrl + "/to-dos/" + toDoID, { complete: !isComplete });
     } catch (error) {
       console.error(
         "Oops... there was an issue with your PATCH request: ",
@@ -71,7 +70,7 @@ export const MainContent = (): JSX.Element => {
   const deleteCompletedToDos = async () => {
     console.log("deleteCompletedToDos function is running!");
     try {
-      axios.delete(baseUrl + "/completed-to-dos/");
+      await axios.delete(baseUrl + "/completed-to-dos/");
     } catch (error) {
       console.error(
         "Oops... there was an issue with your DELETE (completed to dos) request: ",

@@ -30,20 +30,18 @@ export const ToDoListView = ({
   ) => {
     e.preventDefault();
     if (inputText !== "") {
-      postToDoArr(toDoText);
-      setDbUpdated(!dBUpdated);
+      postToDoArr(toDoText).then(() => getToDoArr());
       setInputText("");
     }
   };
 
-  const handleToggleTodo = (toDoID: number, isToDoComplete: boolean) => {
-    patchToDo(String(toDoID), isToDoComplete);
-    setDbUpdated(!dBUpdated);
+  const handleToggleTodo = async (toDoID: number, isToDoComplete: boolean) => {
+    await patchToDo(String(toDoID), isToDoComplete)
+    getToDoArr();
   };
 
   const handleDeleteCompleted = () => {
-    deleteCompletedToDos();
-    setDbUpdated(!dBUpdated);
+    deleteCompletedToDos().then(() => getToDoArr());
   };
 
   return (
