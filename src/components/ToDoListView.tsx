@@ -7,6 +7,7 @@ interface ToDoListViewProps {
   getToDoArr: () => Promise<void>;
   postToDoArr: (toDoText: string) => Promise<void>;
   patchToDo: (toDoID: string, isComplete: boolean) => Promise<void>;
+  deleteCompletedToDos: () => Promise<void>;
 }
 
 export const ToDoListView = ({
@@ -15,7 +16,8 @@ export const ToDoListView = ({
   setInputText,
   getToDoArr,
   postToDoArr,
-  patchToDo
+  patchToDo,
+  deleteCompletedToDos
 }: ToDoListViewProps): JSX.Element => {
 
   //HANDLERS
@@ -33,6 +35,11 @@ export const ToDoListView = ({
 
   const handleToggleTodo = (toDoID: number, isToDoComplete: boolean) => {
     patchToDo(String(toDoID), isToDoComplete);
+    getToDoArr();
+  };
+
+  const handleDeleteCompleted = () => {
+    deleteCompletedToDos();
     getToDoArr();
   };
 
@@ -55,6 +62,9 @@ export const ToDoListView = ({
         />
         <input type="submit" value="Add" />
       </form>
+
+
+        <button onClick={handleDeleteCompleted}>Delete Completed</button>
     </div>
   );
 };

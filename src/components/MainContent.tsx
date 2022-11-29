@@ -46,6 +46,16 @@ export const MainContent = (): JSX.Element => {
     }
   }
 
+  //DELETE completed to dos
+  const deleteCompletedToDos = async () => {
+    console.log("deleteCompletedToDos function is running!")
+    try {
+      axios.delete(baseUrl+"/completed-to-dos/");
+    } catch (error){
+      console.error("Oops... there was an issue with your DELETE (completed to dos) request: ", error)
+    }
+  }
+
   //GET to dos stored on server DB on mount
   useEffect(() => {
     getToDoArr();
@@ -53,7 +63,7 @@ export const MainContent = (): JSX.Element => {
 
   return (
     <div className="mainContentWrapper">
-      <ToDoListView toDoArr={toDoArr} patchToDo={patchToDo} inputText={inputText} setInputText={setInputText} getToDoArr={getToDoArr} postToDoArr={postToDoArr}/>
+      <ToDoListView toDoArr={toDoArr} patchToDo={patchToDo} inputText={inputText} setInputText={setInputText} getToDoArr={getToDoArr} postToDoArr={postToDoArr} deleteCompletedToDos={deleteCompletedToDos}/>
     </div>
   );
 };
