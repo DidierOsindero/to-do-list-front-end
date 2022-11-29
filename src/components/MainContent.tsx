@@ -20,7 +20,7 @@ export const MainContent = (): JSX.Element => {
   const [inputText, setInputText] = useState<string>("");
   const [dBUpdated, setDbUpdated] = useState<boolean>(false);
 
-  //Update toDos every time there is a change made to the database.
+  //Update toDos on mount / every time there is a change made to the database.
   //useEffect means that this will give db enough time to make changes before fetching
   // the newly updated to do list
   useEffect(() => {
@@ -80,11 +80,6 @@ export const MainContent = (): JSX.Element => {
       );
     }
   };
-
-  //GET to dos stored on server DB on mount
-  useEffect(() => {
-    getToDoArr();
-  }, []);
 
   return (
     <div className="mainContentWrapper">
