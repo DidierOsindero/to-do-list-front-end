@@ -25,7 +25,6 @@ export const MainContent = (): JSX.Element => {
   // the newly updated to do list
   useEffect(() => {
     getToDoArr();
-    setDbUpdated(false);
   }, [dBUpdated]);
 
   //GET to dos from API

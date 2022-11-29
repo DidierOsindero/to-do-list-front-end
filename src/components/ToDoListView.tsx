@@ -24,26 +24,26 @@ export const ToDoListView = ({
   setDbUpdated,
 }: ToDoListViewProps): JSX.Element => {
   //HANDLERS
-  const handleAddToDo = async (
+  const handleAddToDo = (
     e: React.FormEvent<HTMLFormElement>,
     toDoText: string
   ) => {
     e.preventDefault();
     if (inputText !== "") {
-      await postToDoArr(toDoText);
-      setDbUpdated(true);
+      postToDoArr(toDoText);
+      setDbUpdated(!dBUpdated);
       setInputText("");
     }
   };
 
   const handleToggleTodo = (toDoID: number, isToDoComplete: boolean) => {
     patchToDo(String(toDoID), isToDoComplete);
-    setDbUpdated(true);
+    setDbUpdated(!dBUpdated);
   };
 
   const handleDeleteCompleted = () => {
     deleteCompletedToDos();
-    setDbUpdated(true);
+    setDbUpdated(!dBUpdated);
   };
 
   return (
