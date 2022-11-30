@@ -10,13 +10,13 @@ export const ToDo = ({
 }: ToDoProps): JSX.Element => {
   return (
     <div
-      className={!toDoData.complete ? "toDo" : "strikedToDo"}
+      className="toDo"
       id={String(toDoData.id)}
       onClick={(e) =>
         handleToggleToDo(Number(e.currentTarget.id), toDoData.complete)
       }
     >
-      {toDoData.text}
+      {toDoData.complete && <span>✔️</span>} {toDoData.text}
     </div>
   );
 };
