@@ -69,9 +69,11 @@ export const ToDoListView = ({
       <ul className="to-do-list-constainer">
         {toDoArr.map((toDo) => {
           return (
-            
-              <ToDo toDoData={toDo} key={toDo.id} handleToggleToDo={handleToggleTodo} />
-          
+            <ToDo
+              toDoData={toDo}
+              key={toDo.id}
+              handleToggleToDo={handleToggleTodo}
+            />
           );
         })}
       </ul>

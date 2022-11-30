@@ -9,7 +9,7 @@ ul {
 }
 
 hr {
-  border: solid 0.5px rgba(223, 169, 33, 0.356) ;
+  border: solid 0.5px rgba(223, 169, 33, 0.356);
 }
 
 /*
@@ -48,7 +48,8 @@ MAIN_CONTENT===============
   transform: translateY(-2px);
 }
 
-.submitButton:active, .deleteCompletedButton:active {
+.submitButton:active,
+.deleteCompletedButton:active {
   background-color: white;
 }
 
@@ -67,13 +68,11 @@ MAIN_CONTENT===============
 
 .to-do-list-constainer {
   text-align: center;
-  
-
 }
 
 .toDo {
   cursor: pointer;
-  border:rgb(187, 187, 187) solid 2px;
+  border: rgb(187, 187, 187) solid 2px;
   border-radius: 15px;
   margin-bottom: 10px;
   margin-left: auto;
@@ -84,8 +83,8 @@ MAIN_CONTENT===============
 }
 
 .toDo:hover {
-  border:rgb(223, 223, 223) solid 2px;
-  color: goldenrod; 
+  border: rgb(223, 223, 223) solid 2px;
+  color: goldenrod;
 }
 
 /*

@@ -10,7 +10,7 @@ export const ToDo = ({
 }: ToDoProps): JSX.Element => {
   return (
     <div
-      className= "toDo" 
+      className="toDo"
       id={String(toDoData.id)}
       onClick={(e) =>
         handleToggleToDo(Number(e.currentTarget.id), toDoData.complete)
