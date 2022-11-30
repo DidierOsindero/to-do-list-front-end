@@ -41,11 +41,6 @@ MAIN_CONTENT===============
   cursor: pointer;
 }
 
-.strikedToDo {
-  cursor: pointer;
-  text-decoration: line-through;
-}
-
 /*
 FOOTER===============
 */
