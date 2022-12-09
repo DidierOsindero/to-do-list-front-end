@@ -3,7 +3,7 @@ import { ToDoListView } from "./ToDoListView";
 import axios from "axios";
 
 export interface IToDo {
-  text: string;
+  task: string;
   complete: boolean;
   id: number;
 }
@@ -43,7 +43,7 @@ export const MainContent = (): JSX.Element => {
   const postToDoArr = async (toDoText: string) => {
     console.log("postToDoArr function is running!");
     try {
-      await axios.post(baseUrl + "/to-dos", { text: toDoText });
+      await axios.post(baseUrl + "/to-dos", { task: toDoText });
     } catch (error) {
       console.error(
         "Oops... there was an issue with your POST request: ",
