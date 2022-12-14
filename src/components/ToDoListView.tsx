@@ -44,17 +44,17 @@ export const ToDoListView = ({
     deleteCompletedToDos().then(() => getToDoArr());
   };
 
-  const sortedToDoArr = toDoArr.sort((a,b): number => {
+  const sortedToDoArr = toDoArr.sort((a, b): number => {
     if (a.id > b.id) {
-      return -1
+      return -1;
     }
 
     if (a.id < b.id) {
-      return 1
+      return 1;
     }
 
     return 0;
-  })
+  });
 
   return (
     <div className="ToDoListViewWrapper">
