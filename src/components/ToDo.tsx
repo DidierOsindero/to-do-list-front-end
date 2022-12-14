@@ -16,7 +16,7 @@ export const ToDo = ({
         handleToggleToDo(Number(e.currentTarget.id), toDoData.complete)
       }
     >
-      {toDoData.complete && <span>✔️</span>} {toDoData.text}
+      {toDoData.complete && <span>✔️</span>} {toDoData.task}
     </div>
   );
 };

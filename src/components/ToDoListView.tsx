@@ -44,6 +44,18 @@ export const ToDoListView = ({
     deleteCompletedToDos().then(() => getToDoArr());
   };
 
+  const sortedToDoArr = toDoArr.sort((a, b): number => {
+    if (a.id > b.id) {
+      return -1;
+    }
+
+    if (a.id < b.id) {
+      return 1;
+    }
+
+    return 0;
+  });
+
   return (
     <div className="ToDoListViewWrapper">
       <form onSubmit={(e) => handleAddToDo(e, inputText)}>
@@ -67,7 +79,7 @@ export const ToDoListView = ({
       </form>
       <hr />
       <ul className="to-do-list-constainer">
-        {toDoArr.map((toDo) => {
+        {sortedToDoArr.map((toDo) => {
           return (
             <ToDo
               toDoData={toDo}
